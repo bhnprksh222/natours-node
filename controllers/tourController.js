@@ -58,8 +58,21 @@ exports.getAllTours = async (req, res) => {
       query = query.select('-__v');
     }
 
+    //* PAGINATION
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 100;
+    const skip = (page - 1) * limit;
+    // page=2&imit=10, 1-10 fpr page 1, 11-20 in page 2
+    query = query.skip(skip).limit(limit);
+
+    if (req.query.page) {
+      const numTours = await Tour.countDocuments();
+      if (skip >= numTours) throw new Error('This page does not exist');
+    }
+
     //* EXECUTE QUERY
     const tours = await query;
+    // query.sort().select().skip().limit();
 
     // const query = Tour.find()
     //   .where('duration')
