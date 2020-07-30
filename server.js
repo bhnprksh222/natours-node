@@ -19,7 +19,7 @@ mongoose
   })
   .then(() => console.log(`DB connection is successful`));
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`App running on port ${port}..`);
 });
