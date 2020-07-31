@@ -9,7 +9,7 @@
     "debug": "ndb server.js"
   },
   "author": "bhanu",
-  "license": "ISC", 
+  "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
